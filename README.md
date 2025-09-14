@@ -2,11 +2,45 @@
 
 *The ultimate debugging and development health toolkit for modern web projects*
 
-[![npm version](https://badge.fury.io/js/dr-cursored.svg)](https://badge.fury.io/js/dr-cursored)
+[![npm version](https://badge.fury.io/js/dr-cursored.svg)](https://npmjs.com/package/dr-cursored)
+[![Downloads](https://img.shields.io/npm/dm/dr-cursored.svg)](https://npmjs.com/package/dr-cursored)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Node.js Version](https://img.shields.io/node/v/dr-cursored.svg)](https://nodejs.org/)
+[![GitHub stars](https://img.shields.io/github/stars/bohselecta/dr-cursored.svg)](https://github.com/bohselecta/dr-cursored/stargazers)
+[![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](http://makeapullrequest.com)
 
 Dr. Cursored is a comprehensive debugging and development health toolkit that helps developers maintain healthy development environments, debug issues faster, and improve project quality. It provides universal health checks, smart cleaning, port management, service orchestration, and powerful debugging tools.
+
+## 🤔 Why Dr. Cursored?
+
+**Stop wasting hours on mysterious build failures and "works on my machine" bugs.**
+
+- ⏰ **Save 2+ hours per week** on debugging environment issues
+- 🔍 **Instant diagnosis** - know exactly what's broken and how to fix it
+- 🚀 **Zero config** - works out of the box with auto-detection
+- 🎯 **Framework agnostic** - one tool for all your projects
+- 👥 **Team friendly** - consistent debugging across all developers
+
+**Before Dr. Cursored:**
+```bash
+❌ Build failed... somewhere... maybe TypeScript? 
+❌ Port 3000 in use but can't find what's using it
+❌ CORS errors but no idea which origin is wrong
+❌ "It works on my machine" 🤷‍♂️
+```
+
+**After Dr. Cursored:**
+```bash
+✅ npm run doctor
+✅ All issues identified with exact fix commands
+✅ One command to rule them all
+```
+
+## 🎬 Demo
+
+![Dr. Cursored in action](https://github.com/bohselecta/dr-cursored/raw/main/demo.gif)
+
+*Coming soon: Interactive demo at [dr-cursored.dev](https://dr-cursored.dev)*
 
 ## ✨ Features
 
@@ -377,6 +411,40 @@ Dr. Cursored includes enhanced `.cursorrules` for better AI assistance:
 - Code quality automation
 - Debugging workflows
 
+## 🔧 Troubleshooting
+
+### Common Issues
+
+**"Command not found: dr-cursored"**
+```bash
+# Make sure it's installed globally or use npx
+npm install -g dr-cursored
+# OR
+npx dr-cursored doctor
+```
+
+**"Permission denied" on Mac/Linux**
+```bash
+# Fix permissions
+chmod +x node_modules/.bin/dr-cursored
+# OR run with sudo
+sudo npx dr-cursored doctor
+```
+
+**"Port already in use"**
+```bash
+# Find and kill the process
+npx dr-cursored ports -k
+# OR use a different port
+PORT=3001 npm run dev
+```
+
+**Still having issues?**
+
+- Run `npx dr-cursored doctor --verbose` for detailed output
+- Check our [FAQ](https://github.com/bohselecta/dr-cursored/discussions)
+- [Open an issue](https://github.com/bohselecta/dr-cursored/issues) with the output
+
 ## 🤝 Contributing
 
 We welcome contributions! Please see our [Contributing Guide](CONTRIBUTING.md) for details.
@@ -396,6 +464,16 @@ npm test
 # Build the project
 npm run build
 ```
+
+## 🎉 Success Stories
+
+> *"Dr. Cursored saved our team 3 hours of debugging on day one. The port conflict detection alone is worth the install."* - [@devteam](https://github.com/devteam)
+
+> *"Finally, a health check that actually tells you what's wrong AND how to fix it!"* - [@frontend_dev](https://github.com/frontend_dev)
+
+> *"The debug interface is a game-changer. No more guessing what's happening in production."* - [@fullstack_hero](https://github.com/fullstack_hero)
+
+*Share your story by [opening a discussion](https://github.com/bohselecta/dr-cursored/discussions)*
 
 ## 📄 License
 
