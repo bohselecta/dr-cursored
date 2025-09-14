@@ -1,0 +1,162 @@
+# Dr. Cursored - Enhanced Cursor IDE Configuration
+
+## Quick Debug Commands
+# Run these in Cursor's terminal when things break:
+
+# 🩺 Health check everything
+npx dr-cursored doctor
+
+# 🧹 Clean build artifacts
+npx dr-cursored clean
+
+# 🔍 Analyze project structure
+npx dr-cursored analyze
+
+# 🚀 Start with verbose logging
+DEBUG=1 npm run dev
+
+## Auto-suggestions for common issues
+
+### Port conflicts
+# If you see "port already in use":
+1. Check what's using the port: `lsof -i :3000` (macOS/Linux) or `netstat -ano | findstr :3000` (Windows)
+2. Kill the process: `kill -9 <PID>` (macOS/Linux) or `taskkill /PID <PID> /F` (Windows)
+3. Or use a different port: `PORT=3001 npm run dev`
+
+### TypeScript errors
+# If you see TypeScript errors:
+1. Check project references: `npx tsc --build --dry`
+2. Clear TS cache: `rm -rf .tsbuildinfo`
+3. Restart TS server in Cursor: Cmd+Shift+P → "TypeScript: Restart TS Server"
+
+### CORS issues
+# If frontend can't reach backend:
+1. Check CORS origins in server config
+2. Verify backend is running: `curl http://localhost:8000/health`
+3. Check browser dev tools for specific CORS errors
+
+### Missing dependencies
+# If you see import errors:
+1. Install dependencies: `npm install`
+2. Check if package exists: `npm list <package-name>`
+3. Clear node_modules: `rm -rf node_modules && npm install`
+
+### Hot reload not working
+# If changes aren't reflecting:
+1. Check file watchers: `echo fs.inotify.max_user_watches=524288 | sudo tee -a /etc/sysctl.conf` (Linux)
+2. Restart dev server with: `npm run dev --force`
+3. Clear browser cache: Cmd+Shift+R
+
+## Project Structure Insights
+# Tell Cursor about your project structure for better suggestions
+
+### API Endpoints
+- Health: GET /api/health
+- Auth: POST /api/auth/login
+- User: GET /api/user/:id
+
+### Environment Variables
+- PORT: Server port (default: 3000)
+- NODE_ENV: Environment (development/production)
+- DATABASE_URL: Database connection string
+- JWT_SECRET: JWT signing secret
+
+### Common File Patterns
+- Components: src/components/*.tsx
+- Pages: src/pages/*.tsx
+- API: src/api/*.ts
+- Utils: src/utils/*.ts
+- Types: src/types/*.ts
+
+## Debug Workflows
+
+### When the app won't start:
+1. `npx dr-cursored doctor` - Check environment
+2. `npx dr-cursored clean` - Clear build artifacts  
+3. `npm install` - Reinstall dependencies
+4. Check ports with `npx dr-cursored ports`
+
+### When API calls fail:
+1. Open debug page: http://localhost:3000/debug
+2. Test endpoint directly in the API tester
+3. Check logs for request IDs
+4. Verify CORS settings
+
+### When builds fail:
+1. Check TypeScript: `npx tsc --noEmit`
+2. Clear cache: `npx dr-cursored clean`
+3. Check for circular dependencies
+4. Verify all imports resolve
+
+### Performance debugging:
+1. Open performance tab in debug interface
+2. Check memory usage graphs
+3. Profile with Chrome DevTools
+4. Check bundle size with `npx dr-cursored analyze`
+
+## Code Quality Automation
+# Auto-format and lint on save
+"editor.formatOnSave": true
+"editor.codeActionsOnSave": {
+  "source.fixAll.eslint": true,
+  "source.organizeImports": true
+}
+
+## Cursor AI Hints
+# Help Cursor understand your codebase better
+
+### Preferred patterns:
+- Use TypeScript strict mode
+- Prefer async/await over Promises
+- Use const assertions for immutable data
+- Implement error boundaries for React components
+- Use proper HTTP status codes
+- Log with structured data (JSON)
+
+### Avoid these patterns:
+- Any types (use unknown instead)
+- Console.log in production
+- Inline styles (use CSS modules/styled-components)
+- Large useEffect dependencies
+- Unhandled promise rejections
+
+## Debugging Tips
+# When you're stuck, try these in order:
+
+1. **Check the basics**: `npx dr-cursored doctor`
+2. **Look at logs**: Check browser console and terminal output
+3. **Test in isolation**: Create a minimal reproduction
+4. **Use the debug interface**: http://localhost:3000/debug
+5. **Check network**: Use browser dev tools Network tab
+6. **Verify environment**: Check all environment variables
+7. **Restart everything**: Stop all services and restart
+8. **Clear caches**: `npx dr-cursored clean --all`
+
+## Common Error Patterns
+# Quick fixes for frequent issues:
+
+### "Module not found"
+- Check import paths are correct
+- Verify file exists at the path
+- Check if it's a TypeScript vs JavaScript issue
+- Run `npm install` to ensure dependencies are installed
+
+### "Cannot read property of undefined"
+- Add null checks before accessing properties
+- Use optional chaining: `obj?.prop?.method?.()`
+- Check if the object is properly initialized
+
+### "CORS error"
+- Add CORS middleware to your server
+- Check if the origin is allowed
+- Verify the request method is supported
+
+### "Port already in use"
+- Use `npx dr-cursored ports` to see what's using the port
+- Kill the process or use a different port
+- Check if another instance is running
+
+### "Type error"
+- Check TypeScript configuration
+- Verify type definitions are correct
+- Use type assertions if necessary: `value as Type`
